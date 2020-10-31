@@ -6,14 +6,25 @@ function Check-ZSH {
 	fi
 }
 function Check-Inet {
-ping -c 1 kernel.org > /dev/null
-if [[ $? != 0 ]]; then
-    echo -e "\e[91mYou are not connected to internet! Please check your internet connection and retry!";
-    exit 1;
-fi
+    ping -c 1 kernel.org > /dev/null
+    if [[ $? != 0 ]]; then
+        echo -e "\e[91mYou are not connected to internet! Please check your internet connection and retry!";
+	exit 1;
+    fi
+}
+function Create-Testdir {
+    printf "\e[96mCreating temp directory...\r"
+    TEMPDIR=`mktemp`
+    echo -e "\e[92mCreated temp directory ${TEMPDIR}"
+}
+function Download-Archive {
+    printf "\e[96mDownloading theme...\r"
+    echo -e "\e[92mDownload Sucessfull!"
 }
 function main {
     Check-ZSH;
     Check-Inet;
+    Create-Testdir
+    Download-Archive;
 }
-
+main;
