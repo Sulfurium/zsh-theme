@@ -15,11 +15,11 @@ function Check-Inet {
 function Create-Testdir {
     printf "\e[96mCreating temp directory...\r"
     TEMPDIR=`mktemp`
-    echo -e "\e[92mCreated temp directory ${TEMPDIR}"
+    echo -e "\e[94mCreated temp directory ${TEMPDIR}"
 }
 function Download-Archive {
     printf "\e[96mDownloading theme...\r"
-    echo -e "\e[92mDownload Sucessfull!"
+    echo -e "\e[94mDownload Sucessfull!"
 }
 function main {
     Check-ZSH;
