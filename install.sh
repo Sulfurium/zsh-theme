@@ -60,6 +60,13 @@ function Install-Theme {
     mv "${TEMPDIR}/zsh-theme-main/sulfurium.zsh-theme" "${INSDIR}/"
     echo -e "\e[94mTheme successfully installed."
 }
+function Setup-ZSHRC {
+    echo -e "\e[96mInstalling new ZSHRC..."
+    cp "${HOME}/.zshrc" "${HOME}/.zshrc-bak"
+    echo -e "Old ZSHRC backed up at ${HOME}/.zshrc-bak"
+
+
+}
 function main {
     Check-ZSH;
     Check-Inet;
@@ -69,5 +76,6 @@ function main {
     Download-Archive;
     Extract-Theme;
     Install-Theme;
+    Setup-ZSHRC;
 }
 main;
