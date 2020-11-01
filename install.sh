@@ -11,6 +11,12 @@ function Check-Wget {
 	exit 1
     fi
 }
+function Check-Tar {
+    if [[ ! "$(command -v tar)" ]]; then
+	echo -e "\e[91mTar is not installed... Please install it with your package manager!"
+	exit 1
+    fi
+}
 function Check-Inet {
     ping -c 1 kernel.org > /dev/null
     if [[ $? != 0 ]]; then
@@ -31,6 +37,8 @@ function Download-Archive {
 function main {
     Check-ZSH;
     Check-Inet;
+    Check-Wget;
+    Check-Tar;
     Create-Testdir
     Download-Archive;
 }
