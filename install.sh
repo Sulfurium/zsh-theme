@@ -47,6 +47,19 @@ function Extract-Theme {
     fi
     echo -e "\e[94mTheme extracted succesfully!"
 }
+function Install-Theme {
+    printf "\e[96mInstalling theme...\r"
+    if [[ -d "${HOME}/.oh-my-zsh" ]]; then
+	OMZ_PRESENT="true"
+	INSDIR="${HOME}/.oh-my-zsh/custom/themes"
+    else
+	OMZ_PRESENT="false"
+	INSDIR="${HOME}/.sulfurium-zsh"
+    fi
+    [ -d "${INSDIR}" ] || mkdir "${INSDIR}"
+    mv "${TEMPDIR}/zsh-theme-main/sulfurium.zsh-theme" "${INSDIR}/"
+    echo -e "\e[94mTheme successfully installed."
+}
 function main {
     Check-ZSH;
     Check-Inet;
@@ -55,5 +68,6 @@ function main {
     Create-Testdir
     Download-Archive;
     Extract-Theme;
+    Install-Theme;
 }
 main;
