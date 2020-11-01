@@ -70,6 +70,9 @@ function Setup-ZSHRC {
 	RC_FILE="zshrc-none"
     fi
     cp "${TEMPDIR}/zsh-theme-main/zshrcs/${RC_FILE}" "${HOME}/.zshrc"
+    echo -e "\e[92mTHeme successfully installed!"
+    sleep 2
+    exec zsh;
 }
 function main {
     Check-ZSH;
