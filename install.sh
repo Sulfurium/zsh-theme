@@ -64,8 +64,12 @@ function Setup-ZSHRC {
     echo -e "\e[96mInstalling new ZSHRC..."
     cp "${HOME}/.zshrc" "${HOME}/.zshrc-bak"
     echo -e "Old ZSHRC backed up at ${HOME}/.zshrc-bak"
-
-
+    if [[ $OMZ_PRESENT == "true" ]]; then
+	RC_FILE="zshrc-omz"
+    else 
+	RC_FILE="zshrc-none"
+    fi
+    cp "${TEMPDIR}/zsh-theme-main/zshrcs/${RC_FILE}" "${HOME}/.zshrc"
 }
 function main {
     Check-ZSH;
