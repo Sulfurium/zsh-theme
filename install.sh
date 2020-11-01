@@ -32,7 +32,16 @@ function Create-Testdir {
 function Download-Archive {
     printf "\e[96mDownloading theme...\r"
     wget https://github.com/Sulfurium/zsh-theme/archive/main.tar.gz -O "${TEMPDIR}/theme.tar.gz" -o /dev/null
-    echo -e "\e[94mDownload Sucessfull!"
+    echo -e "\e[94mDownloaded Sucessfully!"
+}
+function Extract-Theme {
+    printf "\e[96mExtracting theme...\r"
+    tar xf "${TEMPDIR}/theme.tar.gz" -C "${TEMPDIR}" 2> /dev/null
+    if [[ $? != 0 ]]; then
+	echo -e "\e[91mOops! Error while extracting theme!"
+	exit 1
+    fi
+    echo -e "\e[94mTheme extracted succesfully!"
 }
 function main {
     Check-ZSH;
@@ -41,5 +50,6 @@ function main {
     Check-Tar;
     Create-Testdir
     Download-Archive;
+    Extract-Theme;
 }
 main;
