@@ -32,6 +32,10 @@ function Create-Testdir {
 function Download-Archive {
     printf "\e[96mDownloading theme...\r"
     wget https://github.com/Sulfurium/zsh-theme/archive/main.tar.gz -O "${TEMPDIR}/theme.tar.gz" -o /dev/null
+    if [[ $? != 0 ]]; then
+	echo -e "\e[91mOops! Error while Downloading theme!"
+	exit 1
+    fi
     echo -e "\e[94mDownloaded Sucessfully!"
 }
 function Extract-Theme {
