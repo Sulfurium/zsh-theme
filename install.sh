@@ -18,11 +18,10 @@ function Check-Tar {
     fi
 }
 function Check-Inet {
-    ping -c 1 kernel.org > /dev/null
-    if [[ $? != 0 ]]; then
-        echo -e "\e[91mYou are not connected to internet! Please check your internet connection and retry!";
+    ping -c 1 kernel.org > /dev/null || {
+	echo -e "\e[91mYou are not connected to internet! Please check your internet connection and retry!";
 	exit 1;
-    fi
+    }
 }
 function Create-Testdir {
     printf "\e[96mCreating temp directory...\r"
