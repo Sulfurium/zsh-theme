@@ -61,8 +61,11 @@ function Install-Theme {
 }
 function Setup-ZSHRC {
     echo -e "\e[96mInstalling new ZSHRC..."
-    cp "${HOME}/.zshrc" "${HOME}/.zshrc-bak"
-    echo -e "Old ZSHRC backed up at ${HOME}/.zshrc-bak"
+    if [[ -f "${HOME}/.zshrc" ]]
+    then 
+        cp "${HOME}/.zshrc" "${HOME}/.zshrc-bak"
+        echo -e "Old ZSHRC backed up at ${HOME}/.zshrc-bak"
+    fi
     if [[ $OMZ_PRESENT == "true" ]]; then
 	RC_FILE="zshrc-omz"
     else 
@@ -70,6 +73,9 @@ function Setup-ZSHRC {
     fi
     cp "${TEMPDIR}/zsh-theme-main/zshrcs/${RC_FILE}" "${HOME}/.zshrc"
     echo -e "\e[92mTheme successfully installed!"
+}
+function Clean-TMPdir {
+    rm -rf "${TEMPDIR}"
 }
 function main {
     Check-ZSH;
@@ -81,5 +87,6 @@ function main {
     Extract-Theme;
     Install-Theme;
     Setup-ZSHRC;
+    Clean-TMPdir;
 }
 main;
